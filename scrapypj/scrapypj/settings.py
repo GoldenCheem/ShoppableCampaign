@@ -7,20 +7,35 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+from shutil import which
+  
+SELENIUM_DRIVER_NAME = 'chrome'
+SELENIUM_DRIVER_EXECUTABLE_PATH = which('chromedriver')
+# SELENIUM_DRIVER_ARGUMENTS = ["--headless=new"]
+SELENIUM_DRIVER_ARGUMENTS = []
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_selenium.SeleniumMiddleware': 800
+}
+
+
+# FEEDS = {
+#     'result.csv': {'format': 'csv', 'overwrite': True}
+# }
+
 BOT_NAME = "scrapypj"
 
 SPIDER_MODULES = ["scrapypj.spiders"]
 NEWSPIDER_MODULE = "scrapypj.spiders"
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "scrapypj (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+# CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
